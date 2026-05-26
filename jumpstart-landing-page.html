@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jumpstart Package — Biodynamic Wellness</title>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Nunito+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bw-blue: #6097b7;
+    --bw-blue-dark: #4a7a99;
+    --bw-blue-deep: #2e5c74;
+    --bw-green: #a6c768;
+    --bw-green-dark: #7ea348;
+    --bw-green-deep: #526b2f;
+    --bw-leaf: #eaf0dc;
+    --bw-leaf-dark: #d0dfb4;
+    --cream: #fafaf7;
+    --cream-alt: #f2f0ea;
+    --white: #ffffff;
+    --text-dark: #1c1c1c;
+    --text-mid: #484848;
+    --text-muted: #7a7a7a;
+    --border: #dde5cc;
+    --border-light: #e8eee0;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Nunito Sans', sans-serif; font-weight: 400; color: var(--text-dark); background: var(--cream); line-height: 1.7; -webkit-font-smoothing: antialiased; }
+  nav { position: sticky; top: 0; z-index: 100; background: var(--white); border-bottom: 1px solid var(--border-light); padding: 0 48px; display: flex; align-items: center; justify-content: space-between; height: 72px; }
+  .nav-logo svg { height: 42px; width: auto; }
+  .nav-cta { background: var(--bw-blue); color: var(--white); font-family: 'Nunito Sans', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 11px 26px; border-radius: 3px; text-decoration: none; transition: background 0.2s; white-space: nowrap; }
+  .nav-cta:hover { background: var(--bw-blue-dark); }
+  section { padding: 96px 48px; }
+  .container { max-width: 840px; margin: 0 auto; }
+  h1 { font-family: 'Libre Baskerville', serif; font-size: clamp(36px, 5vw, 60px); font-weight: 700; line-height: 1.15; color: var(--bw-blue-deep); letter-spacing: -0.01em; }
+  h2 { font-family: 'Libre Baskerville', serif; font-size: clamp(26px, 3.8vw, 44px); font-weight: 700; line-height: 1.2; color: var(--bw-blue-deep); }
+  h3 { font-family: 'Libre Baskerville', serif; font-size: 21px; font-weight: 700; line-height: 1.3; color: var(--bw-blue-deep); }
+  .eyebrow { font-family: 'Nunito Sans', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--bw-green-dark); margin-bottom: 18px; display: block; }
+  p { font-size: 17px; line-height: 1.85; color: var(--text-mid); }
+  p + p { margin-top: 18px; }
+  .italic-pull { font-family: 'Libre Baskerville', serif; font-size: clamp(20px, 2.6vw, 30px); font-style: italic; font-weight: 400; color: var(--bw-blue); line-height: 1.5; }
+  hr.div { border: none; border-top: 1px solid var(--border); margin: 44px 0; }
+
+  /* HERO */
+  .hero { background: var(--white); padding: 108px 48px 96px; border-bottom: 1px solid var(--border-light); }
+  .hero-inner { max-width: 840px; margin: 0 auto; }
+  .hero h1 { margin-bottom: 28px; }
+  .hero-sub { font-size: 18px; color: var(--text-mid); max-width: 620px; margin-bottom: 44px; line-height: 1.8; }
+  .cta-group { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
+  .btn-primary { display: inline-block; background: var(--bw-blue); color: var(--white); font-family: 'Nunito Sans', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 18px 40px; border-radius: 3px; text-decoration: none; transition: background 0.2s, transform 0.15s; }
+  .btn-primary:hover { background: var(--bw-blue-dark); transform: translateY(-1px); }
+  .btn-sec { color: var(--bw-blue); font-size: 15px; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+  .hero-note { margin-top: 18px; font-size: 13px; color: var(--text-muted); }
+  .hero-stats { display: flex; gap: 48px; margin-top: 64px; padding-top: 48px; border-top: 1px solid var(--border-light); flex-wrap: wrap; }
+  .stat-n { font-family: 'Libre Baskerville', serif; font-size: 48px; font-weight: 700; color: var(--bw-blue); line-height: 1; display: block; }
+  .stat-l { font-size: 13px; color: var(--text-muted); margin-top: 8px; max-width: 155px; display: block; line-height: 1.55; }
+
+  /* QUALIFIER */
+  .qualifier { background: var(--bw-blue-deep); padding: 96px 48px; }
+  .qualifier h2 { color: var(--white); margin-bottom: 16px; }
+  .qualifier .eyebrow { color: var(--bw-green); }
+  .qualifier .qlead { color: rgba(255,255,255,0.72); font-size: 17px; max-width: 560px; margin-bottom: 40px; line-height: 1.8; }
+  .qgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-top: 36px; }
+  .qitem { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.09); border-left: 3px solid var(--bw-green); padding: 24px 28px; display: flex; gap: 14px; align-items: flex-start; border-radius: 0 3px 3px 0; }
+  .qitem p { color: rgba(255,255,255,0.85); font-size: 15px; line-height: 1.7; }
+  .qdot { width: 8px; height: 8px; border-radius: 50%; background: var(--bw-green); margin-top: 8px; flex-shrink: 0; }
+
+  /* PROBLEM */
+  .problem { background: var(--cream); }
+
+  /* SOLUTION */
+  .solution { background: var(--white); }
+  .pathways { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 44px; }
+  .pathway { background: var(--cream); border: 1px solid var(--border); border-radius: 4px; padding: 36px 30px; }
+  .pathway-badge { display: inline-block; background: var(--bw-leaf); color: var(--bw-green-deep); font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; padding: 6px 12px; border-radius: 2px; margin-bottom: 16px; }
+  .pathway h3 { font-size: 19px; margin-bottom: 12px; }
+  .pathway p { font-size: 15px; line-height: 1.75; }
+  .pathway-note { font-size: 13px; color: var(--text-muted); margin-top: 14px; font-style: italic; }
+
+  /* INCLUDED */
+  .included { background: var(--cream-alt); }
+  .inc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(258px, 1fr)); gap: 18px; margin-top: 44px; }
+  .inc-card { background: var(--white); border: 1px solid var(--border-light); border-top: 3px solid var(--bw-blue); border-radius: 0 0 4px 4px; padding: 30px 26px; }
+  .inc-num { font-family: 'Libre Baskerville', serif; font-size: 34px; font-weight: 700; color: var(--bw-leaf-dark); line-height: 1; margin-bottom: 14px; display: block; }
+  .inc-card h3 { font-size: 18px; margin-bottom: 10px; }
+  .inc-card p { font-size: 15px; line-height: 1.75; }
+  .inc-note { font-size: 13px; color: var(--text-muted); margin-top: 12px; font-style: italic; }
+  .bonus-bar { background: var(--bw-leaf); border: 1px solid var(--border); border-left: 4px solid var(--bw-green); border-radius: 0 4px 4px 0; padding: 26px 30px; margin-top: 24px; display: flex; gap: 20px; align-items: flex-start; }
+  .bonus-badge { background: var(--bw-green-dark); color: var(--white); font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 8px 14px; border-radius: 2px; white-space: nowrap; flex-shrink: 0; margin-top: 2px; }
+  .bonus-text strong { font-size: 15px; font-weight: 700; color: var(--bw-green-deep); display: block; margin-bottom: 6px; }
+  .bonus-text p { font-size: 14px; color: var(--bw-green-deep); opacity: 0.82; }
+
+  /* PRACTITIONER */
+  .practitioner { background: var(--white); }
+  .pcard { display: grid; grid-template-columns: 250px 1fr; gap: 52px; align-items: start; margin-top: 44px; }
+  .pphoto { background: var(--bw-leaf); border: 1px solid var(--border); border-radius: 4px; aspect-ratio: 3/4; display: flex; align-items: center; justify-content: center; color: var(--bw-blue); font-size: 13px; text-align: center; padding: 24px; line-height: 1.6; }
+  .pname { font-family: 'Libre Baskerville', serif; font-size: 30px; font-weight: 700; color: var(--bw-blue-deep); margin-bottom: 6px; }
+  .pcreds { font-size: 12px; font-weight: 700; color: var(--bw-green-dark); letter-spacing: 0.07em; text-transform: uppercase; margin-bottom: 22px; }
+  .ctags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 26px; }
+  .ctag { background: var(--bw-leaf); color: var(--bw-green-deep); font-size: 12px; font-weight: 600; padding: 6px 13px; border-radius: 2px; }
+  .endorse { border-left: 3px solid var(--bw-blue); padding-left: 20px; margin-top: 26px; }
+  .endorse p { font-size: 15px; color: var(--text-mid); font-style: italic; line-height: 1.75; }
+  .endorse .sig { font-style: normal; font-weight: 700; color: var(--bw-blue); margin-top: 8px; font-size: 13px; }
+
+  /* TESTIMONIALS */
+  .testimonials { background: var(--bw-blue-deep); }
+  .testimonials h2 { color: var(--white); }
+  .testimonials .eyebrow { color: var(--bw-green); }
+  .tlead { color: rgba(255,255,255,0.65); font-size: 16px; margin-top: 14px; max-width: 540px; line-height: 1.8; }
+  .tstack { display: flex; flex-direction: column; gap: 18px; margin-top: 44px; }
+  .tcard { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); border-left: 3px solid var(--bw-green); border-radius: 0 4px 4px 0; padding: 30px 34px; }
+  .tquote { font-family: 'Libre Baskerville', serif; font-size: clamp(16px, 2vw, 21px); font-style: italic; color: var(--white); line-height: 1.6; margin-bottom: 14px; }
+  .tsource { font-size: 11px; color: rgba(255,255,255,0.42); letter-spacing: 0.08em; text-transform: uppercase; }
+  .tcallout { background: rgba(166,199,104,0.1); border-radius: 3px; padding: 13px 17px; margin-top: 13px; font-size: 14px; color: var(--bw-leaf); font-style: italic; line-height: 1.65; }
+
+  /* PRICING */
+  .pricing { background: var(--cream); }
+  .pgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 44px; }
+  .pcard-box { border: 1px solid var(--border); border-radius: 4px; padding: 38px 34px; background: var(--white); }
+  .pcard-box.feat { background: var(--bw-blue-deep); border-color: var(--bw-blue-deep); }
+  .plabel { font-size: 11px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 12px; display: block; }
+  .feat .plabel { color: var(--bw-green); }
+  .pamount { font-family: 'Libre Baskerville', serif; font-size: 50px; font-weight: 700; color: var(--bw-blue-deep); line-height: 1; margin-bottom: 6px; }
+  .feat .pamount { color: var(--white); }
+  .pdesc { font-size: 14px; color: var(--text-muted); margin-bottom: 26px; }
+  .feat .pdesc { color: rgba(255,255,255,0.52); }
+  .code-box { background: var(--bw-leaf); border-radius: 3px; padding: 14px 18px; margin-bottom: 8px; }
+  .code-lbl { font-size: 10px; color: var(--bw-green-deep); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; display: block; margin-bottom: 4px; }
+  .code-val { font-family: 'Libre Baskerville', serif; font-size: 22px; font-weight: 700; color: var(--bw-green-deep); letter-spacing: 0.14em; }
+  .code-sub { font-size: 12px; color: var(--bw-green-deep); opacity: 0.72; margin-top: 5px; display: block; }
+  .pcta { display: block; text-align: center; background: var(--bw-green-dark); color: var(--white); font-family: 'Nunito Sans', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 16px 28px; border-radius: 3px; text-decoration: none; margin-top: 26px; transition: background 0.2s; }
+  .pcta:hover { background: var(--bw-green-deep); }
+  .pterms { margin-top: 32px; padding: 22px 26px; background: var(--white); border: 1px solid var(--border-light); border-radius: 4px; }
+  .pterms h4 { font-size: 11px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 12px; }
+  .pterms ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .pterms li { font-size: 14px; color: var(--text-mid); padding-left: 16px; position: relative; line-height: 1.6; }
+  .pterms li::before { content: '—'; position: absolute; left: 0; color: var(--text-muted); }
+
+  /* SEASON NOTE */
+  .season-note { background: var(--cream-alt); }
+  .note-pull { font-family: 'Libre Baskerville', serif; font-size: clamp(18px, 2.4vw, 27px); font-style: italic; color: var(--bw-blue); line-height: 1.5; margin-bottom: 36px; }
+  .note-sig { font-family: 'Libre Baskerville', serif; font-size: 21px; font-style: italic; color: var(--bw-blue); margin-top: 36px; }
+
+  /* FAQ */
+  .faq { background: var(--white); }
+  .faq-list { margin-top: 44px; }
+  .faq-item { border-bottom: 1px solid var(--border-light); padding: 26px 0; }
+  .faq-item:first-child { border-top: 1px solid var(--border-light); }
+  .faq-q { font-family: 'Libre Baskerville', serif; font-size: 19px; font-weight: 700; color: var(--bw-blue-deep); margin-bottom: 11px; line-height: 1.4; }
+  .faq-a { font-size: 16px; color: var(--text-mid); line-height: 1.8; }
+
+  /* FINAL CTA */
+  .final-cta { background: var(--bw-blue-deep); text-align: center; padding: 112px 48px; }
+  .final-cta h2 { color: var(--white); margin-bottom: 18px; }
+  .final-cta .fsub { color: rgba(255,255,255,0.68); font-size: 17px; margin: 0 auto 44px; max-width: 580px; line-height: 1.8; }
+  .final-cta .cta-group { justify-content: center; }
+  .final-cta .fnote { color: rgba(255,255,255,0.35); font-size: 13px; margin-top: 22px; }
+  .final-cta .eyebrow { color: var(--bw-green); }
+
+  footer { background: #111; padding: 40px; text-align: center; }
+  footer p { font-size: 13px; color: rgba(255,255,255,0.3); line-height: 1.7; }
+  footer a { color: rgba(255,255,255,0.5); text-decoration: underline; }
+
+  @media (max-width: 768px) {
+    nav { padding: 0 20px; }
+    .nav-logo svg { height: 32px; }
+    section, .hero, .qualifier, .final-cta { padding: 72px 24px; }
+    .pathways, .pgrid { grid-template-columns: 1fr; }
+    .pcard { grid-template-columns: 1fr; }
+    .pphoto { aspect-ratio: 1/1; max-width: 200px; }
+    .hero-stats { gap: 30px; }
+    .cta-group { flex-direction: column; align-items: flex-start; }
+    .bonus-bar { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 708.48 193.21"><defs><style>.c1{fill:none}.c2{fill:#6097b7}.c3{fill:#eaf0dc}.c4{fill:#a6c768}.c5{fill:#fff}</style></defs><path class="c5" d="M128.81,168.11c-12.38,15.08-30.13,22.41-54.26,22.41s-41.88-7.33-54.26-22.41c-11.68-14.23-17.6-38.28-17.6-71.5S8.62,39.34,20.3,25.11C32.68,10.03,50.43,2.69,74.56,2.69s41.88,7.33,54.26,22.41c11.68,14.23,17.6,38.28,17.6,71.5s-5.92,57.27-17.6,71.5Z"/><path class="c2" d="M87.89,86.86c2.54.82,5.17,1.24,7.81,1.24,6.09,0,11.73-2.29,15.85-6.42,6.14-6.13,8.05-15.41,4.97-24.25l-.04-.13c-.13-.39-.42-.67-.82-.8-8.84-3.12-18.17-1.22-24.33,4.95-6,6-7.97,15.04-5.19,23.66l-10.4,10.4v-32.57c8.08-4.13,13.07-11.91,13.07-20.39s-5.24-16.6-13.65-20.68l-.14-.06c-.2-.09-.62-.13-.86-.06h-.18l-.09.12c-.04.02-.08.05-.13.08-8.37,4.04-13.56,11.92-13.56,20.59s4.99,16.25,13.05,20.37v50.55l-10.26-10.26c2.78-8.65.81-17.69-5.18-23.69-6.19-6.17-15.52-8.06-24.33-4.95-.39.12-.67.38-.8.73l-.08.09v.15c-3.07,8.8-1.17,18.06,4.97,24.19,4.14,4.15,9.78,6.43,15.86,6.43,2.64,0,5.26-.42,7.79-1.24l12.03,12.03v56.54c0,1.07,1.48,1.9,2.5.51v-35.11l12.15-12.15c2.54.83,5.17,1.24,7.81,1.24,6.09,0,11.73-2.27,15.85-6.42,6.14-6.12,8.04-15.4,4.97-24.24l-.04-.14c-.13-.38-.42-.66-.82-.79-8.84-3.12-18.17-1.22-24.33,4.95-6,5.99-7.97,15.03-5.19,23.66l-10.4,10.4v-18.54c.07-.22.07-.47,0-.69v-17.16l12.15-12.15Z"/><path class="c3" d="M88.15,83.09l24.81-24.81c-1.92-.52-3.87-.76-5.77-.76-5.34,0-10.42,1.98-14.12,5.68-5.03,5.02-6.87,12.57-4.92,19.89Z"/><path class="c3" d="M88.15,122.98l24.81-24.8c-1.92-.52-3.87-.76-5.77-.76-5.34,0-10.42,1.97-14.12,5.67-5.03,5.03-6.87,12.58-4.92,19.89Z"/><path class="c3" d="M62.67,42.54c0,7.11,4.03,13.76,10.57,17.58V24.99c-6.54,3.82-10.57,10.46-10.57,17.55Z"/><path class="c3" d="M33.61,84.01c0,5.31,1.97,10.27,5.72,13.98,5.02,5.03,12.55,6.87,19.87,4.92l-24.79-24.79c-.53,1.98-.8,3.96-.8,5.88Z"/><path class="c2" d="M130.89,23.4C117.97,7.65,99.54,0,74.56,0S31.14,7.65,18.22,23.4C6.13,38.12,0,62.75,0,96.61s6.13,58.49,18.22,73.21c12.93,15.74,31.35,23.4,56.34,23.4s43.41-7.65,56.34-23.4c12.09-14.72,18.22-39.35,18.22-73.21s-6.13-58.49-18.22-73.21ZM128.81,168.11c-12.38,15.08-30.13,22.41-54.26,22.41s-41.88-7.33-54.26-22.41c-11.68-14.23-17.6-38.28-17.6-71.5S8.62,39.34,20.3,25.11C32.68,10.03,50.43,2.69,74.56,2.69s41.88,7.33,54.26,22.41c11.68,14.23,17.6,38.28,17.6,71.5s-5.92,57.27-17.6,71.5Z"/><path class="c2" d="M125.36,30.43c-11.92-14.52-28.54-21.58-50.81-21.58s-38.88,7.06-50.81,21.58C17.12,38.5,8.31,54.13,8.31,96.6c0,20.34,1.6,49.33,15.43,66.17,11.92,14.52,28.54,21.58,50.81,21.58s38.88-7.06,50.81-21.58c6.62-8.07,15.43-23.7,15.43-66.17,0-20.34-1.6-49.33-15.43-66.17Z"/><path class="c2" d="M220.16,47.25c0,9.82-7.83,16.37-23.64,16.37-7.35,0-14.45-.32-18.05-.32s-6.23.24-7.75.24c-1.92,0-2.56-.88-2.56-2,0-3.19,5.11-1.36,5.11-6.87V15.23c0-5.51-5.11-3.67-5.11-6.87,0-1.12.64-2,2.56-2,1.52,0,4.15.24,7.75.24,4.55,0,9.26-.4,15.57-.4,12.86,0,21.72,5.03,21.72,14.53,0,5.11-2.8,9.5-8.54,11.66,7.51,2,12.94,6.95,12.94,14.85ZM183.82,28.49c0,1.36.48,1.92,2.48,1.92h6.87c7.19,0,11.1-3.03,11.1-9.02s-4.23-9.82-12.38-9.82h-1.52c-4.87,0-6.55.96-6.55,3.99v12.94ZM208.5,47.41c0-7.27-5.03-11.9-15.33-11.9h-6.95c-1.84,0-2.4.56-2.4,2.16v15.81c0,3.99,1.52,4.79,7.27,4.79h3.11c8.78,0,14.29-3.99,14.29-10.86Z"/><path class="c2" d="M225.66,61.63c0-3.27,5.11-1.44,5.11-6.95V15.23c0-5.51-5.11-3.67-5.11-6.95,0-.96.8-1.92,2.56-1.92,1.92,0,3.99.24,7.75.24s6.15-.24,8.06-.24c1.76,0,2.4.96,2.4,1.92,0,3.27-5.11,1.44-5.11,6.95v39.45c0,5.51,5.11,3.67,5.11,6.95,0,.96-.64,1.92-2.4,1.92-1.92,0-4.31-.24-8.06-.24s-5.99.24-7.9.24c-1.76,0-2.4-.96-2.4-1.92Z"/><path class="c2" d="M251.93,36.15c0-17.81,13.02-31.14,30.18-31.14s30.26,13.34,30.26,31.06-12.86,28.83-30.26,28.83-30.18-11.26-30.18-28.74ZM300.64,35.04c0-12.78-6.95-24.35-18.44-24.35s-18.53,11.5-18.53,24.59,7.03,23.72,18.45,23.72,18.52-10.86,18.52-23.95Z"/><path class="c2" d="M328.18,63.3c-3.59,0-6.31.24-7.75.24-1.92,0-2.63-.88-2.63-2,0-3.19,5.19-1.36,5.19-6.87V15.23c0-5.51-5.19-3.67-5.19-6.87,0-1.12.72-2,2.63-2,1.44,0,4.15.24,7.75.24,4.39,0,8.86-.4,13.26-.4,19.48,0,33.22,12.14,33.22,29.54s-12.38,27.87-31.06,27.87c-5.11,0-10.22-.32-15.41-.32ZM342.31,58.19c13.25,0,20.68-8.7,20.68-23s-8.22-23.48-21.72-23.48h-1.36c-4.95,0-6.39,1.04-6.39,3.83v38.81c0,2.87,1.52,3.83,6.39,3.83h2.39Z"/><path class="c2" d="M428.63,8.21c0,2.8-3.35,1.92-6.07,6.31l-16.29,27.23v12.94c0,5.43,6.39,3.35,6.39,6.87,0,1.04-.72,2-2.4,2-2.39,0-5.19-.24-9.26-.24s-6.95.24-9.26.24c-1.76,0-2.4-.96-2.4-2,0-3.51,6.31-1.44,6.31-6.87v-12.94l-16.29-27.31c-2.48-4.07-5.67-3.59-5.67-6.15,0-1.12.8-1.84,2.16-1.84,1.6,0,4.23.24,7.91.24,3.43,0,6.79-.24,8.94-.24,1.76,0,2.8.64,2.8,2,0,2.79-4.55,1.76-4.55,4.79,0,.72.4,1.6,1.28,3.27l11.18,19.32,11.34-19c.8-1.44,1.28-2.48,1.28-3.35,0-3.11-4.95-2.32-4.95-5.03,0-1.36,1.04-2,2.8-2,2.08,0,4.39.24,6.47.24s4.55-.24,6.31-.24c1.2,0,2,.72,2,1.76Z"/><path class="c2" d="M488.43,8.29c0,3.27-5.35,1.44-5.35,6.95v45.99c0,1.92-1.28,2.8-2.71,2.8-1.84,0-2.8-.96-3.91-2.32l-32.9-41.76v34.73c0,5.35,6.39,3.19,6.39,6.95,0,1.12-.88,1.92-2.63,1.92-2.08,0-4.71-.24-6.71-.24s-4.23.24-6.23.24c-1.68,0-2.48-.96-2.48-2,0-3.19,5.27-1.36,5.27-6.87V15.23c0-5.51-5.27-3.67-5.27-6.87,0-1.12.88-2,2.71-2,1.52,0,3.11.16,5.03.16s2.95-.08,4.15-.08c1.36,0,2.56.4,3.83,2l29.15,37.13V15.23c0-5.35-6.47-3.19-6.47-6.95,0-1.04,1.04-1.92,2.71-1.92,2.16,0,4.23.24,6.71.24,2.16,0,4.23-.24,6.15-.24,1.76,0,2.56.88,2.56,1.92Z"/><path class="c2" d="M549.67,61.79c0,1.04-.8,1.76-2.08,1.76-1.68,0-4.15-.24-7.9-.24s-7.27.24-9.5.24c-1.84,0-2.87-.64-2.87-2,0-2.87,5.35-1.92,5.35-5.11,0-.72-.24-1.6-.64-2.79l-3.27-8.07c-.48-1.36-.96-1.84-2.48-1.84h-17.97c-1.52,0-2,.48-2.48,1.84l-3.19,7.99c-.48,1.28-.8,2.08-.8,2.8,0,3.19,5.51,2.4,5.51,5.19,0,1.36-1.04,2-2.87,2-2.24,0-4.47-.24-6.95-.24s-4.15.24-5.91.24c-1.36,0-2.16-.72-2.16-1.76,0-3.19,4.31-1.76,6.39-7.03l12.78-32.5c1.52-3.83,3.11-8.07,4.15-11.18,1.52-4.47,2.16-5.03,6.95-5.03s5.19.64,6.71,5.03c1.12,3.11,2.72,7.35,4.23,11.18l12.7,32.34c2.16,5.35,6.31,4.15,6.31,7.19ZM525.48,37.03l-8.22-20.84-8.14,20.76c-.32.88-.08,1.52.96,1.52h14.29c1.28,0,1.44-.72,1.12-1.44Z"/><path class="c2" d="M626.56,61.63c0,1.12-1.04,1.92-2.71,1.92-1.52,0-3.83-.24-7.67-.24s-6.47.24-8.78.24c-1.84,0-2.87-.64-2.87-2,0-2.87,5.27-2.08,5.27-5.19,0-.88-.16-1.76-.4-2.87l-4.95-29.38-13.89,32.66c-.72,1.6-1.92,2.16-3.19,2.16-1.44,0-2.48-.56-3.19-2.16l-16.05-33.14-4.71,29.86c-.16,1.12-.32,2-.32,2.87,0,3.11,5.19,2.32,5.19,5.19,0,1.36-1.04,2-2.79,2-2,0-4.23-.24-6.63-.24s-4.31.24-5.99.24c-1.52,0-2.56-.72-2.56-2,0-2.95,5.51-2.16,6.23-6.47l5.99-35.61c.4-1.92.4-3.67.4-4.63,0-4.47-4.63-3.43-4.63-6.55,0-.96.72-1.92,2.87-1.92,1.68,0,4.79.24,7.99.24,3.35,0,5.67-.24,7.67-.24,1.68,0,2.56.88,2.56,2,0,2.87-4.07,2.24-4.07,5.51,0,1.36,1.04,3.51,2.39,6.39l11.74,24.75,10.38-24.75c1.2-2.71,1.92-4.79,1.92-6.23,0-3.75-4.39-2.63-4.39-5.67,0-1.12.96-2,2.56-2,2,0,4.55.24,8.14.24,3.11,0,5.51-.24,7.43-.24,1.68,0,2.47.96,2.47,1.92,0,3.04-4.47,2.08-4.47,5.75,0,1.2.32,2.87.8,5.43l6.23,35.69c.8,4.23,6.07,3.35,6.07,6.47Z"/><path class="c2" d="M630.63,61.63c0-3.27,5.11-1.44,5.11-6.95V15.23c0-5.51-5.11-3.67-5.11-6.95,0-.96.8-1.92,2.56-1.92,1.92,0,3.99.24,7.75.24s6.15-.24,8.07-.24c1.76,0,2.39.96,2.39,1.92,0,3.27-5.11,1.44-5.11,6.95v39.45c0,5.51,5.11,3.67,5.11,6.95,0,.96-.64,1.92-2.39,1.92-1.92,0-4.31-.24-8.07-.24s-5.99.24-7.9.24c-1.76,0-2.4-.96-2.4-1.92Z"/><path class="c2" d="M657.06,36.15c0-18.37,12.7-30.98,26.83-30.98,5.59,0,9.98,1.92,11.9,1.92,1.76,0,2-2.16,3.67-2.16,1.44,0,2.32,1.04,3.51,4.15l2.71,7.03c1.44,3.59,2.16,4.87,2.16,6.23,0,1.6-1.12,2.39-2.16,2.39-1.12,0-1.92-.72-2.95-2-5.91-7.83-10.86-11.9-16.85-11.9-9.9,0-17.33,9.74-17.33,23.08,0,14.29,7.98,23.48,19.16,23.48,6.55,0,12.06-3.35,15.73-8.54.72-.88,1.44-1.76,2.72-1.76s2.32.96,2.32,2.39c0,.88-.4,1.92-1.04,3.19-2.87,5.19-11.02,12.22-23.24,12.22-14.21,0-27.15-10.62-27.15-28.74Z"/><path class="c4" d="M290.46,86.07c0,3.19-4.31,1.76-6.07,7.03l-15.89,46.07c-.64,1.92-1.76,2.87-5.35,2.87s-4.63-.96-5.35-2.87l-11.18-31.38-11.02,31.38c-.72,1.92-1.76,2.87-5.51,2.87s-4.55-.96-5.27-2.87l-16.45-45.91c-1.92-5.27-6.07-4.07-6.07-7.19,0-1.04.96-1.76,2.16-1.76,1.76,0,4.15.24,7.9.24s6.87-.24,9.02-.24c1.76,0,2.8.64,2.8,2,0,2.79-4.63,2.08-4.63,5.27,0,.96.32,2.4,1.04,4.47l11.98,34.5,10.86-31.62-2-5.67c-1.84-5.27-5.91-4.07-5.91-7.19,0-1.04.96-1.76,2.16-1.76,1.76,0,3.91.24,7.75.24s6.95-.24,9.18-.24c1.76,0,2.63.64,2.63,2,0,2.79-4.71,2.08-4.71,5.27,0,.96.32,2.48,1.04,4.47l11.9,34.34,11.18-34.02c.88-2.71,1.2-3.91,1.2-4.79,0-3.19-5.19-2.48-5.19-5.27,0-1.36.96-2,2.79-2,2.16,0,4.71.24,7.03.24s4.31-.24,5.91-.24c1.28,0,2.08.72,2.08,1.76Z"/><path class="c4" d="M344.35,126.07c0,1.44-.56,2.71-2.24,6.07l-3.43,7.35c-1.04,2.24-2.08,3.43-3.59,3.43-2.15,0-2.39-1.76-5.35-1.76h-26.43c-3.59,0-6.23.24-7.75.24-1.92,0-2.56-.88-2.56-2,0-3.19,5.11-1.36,5.11-6.87v-39.45c0-5.51-5.11-3.67-5.11-6.87,0-1.12.64-2,2.56-2,1.44,0,4.07.24,7.75.24h23.24c2.8,0,3.03-1.76,4.95-1.76,1.6,0,2.56,1.04,3.91,3.99l3.04,6.47c1.52,3.03,2.08,4.39,2.08,5.75s-.96,2.08-1.92,2.08c-1.12,0-1.84-.72-3.03-1.92-5.51-5.91-8.7-9.42-15.33-9.42h-5.91c-4.95,0-5.67,1.12-5.67,3.91v14.29c0,1.36.48,1.92,2.32,1.92h6.39c4.95,0,4.71-5.91,7.67-5.91,1.2,0,2.08.72,2.08,2.63s-.24,3.83-.24,5.83.24,4.07.24,5.91-.88,2.63-2.08,2.63c-2.95,0-2.72-5.91-7.67-5.91h-6.39c-1.84,0-2.32.56-2.32,1.92v15.17c0,2.87.8,3.91,5.67,3.91h8.94c6.87,0,10.46-3.83,16.13-9.98,1.12-1.28,1.84-2,2.95-2,.96,0,2,.8,2,2.08Z"/><path class="c4" d="M381.96,141.16h-23.08c-3.59,0-6.23.24-7.75.24-1.92,0-2.56-.88-2.56-2,0-3.19,5.11-1.36,5.11-6.87v-39.45c0-5.51-5.11-3.67-5.11-6.95,0-.96.8-1.92,2.56-1.92,1.92,0,3.99.24,7.75.24s6.15-.24,8.06-.24c1.76,0,2.4.96,2.4,1.92,0,3.27-5.11,1.44-5.11,6.95v39.61c0,2.32,1.04,3.27,3.43,3.27h7.91c6.15,0,10.3-4.15,16.13-10.3,1.28-1.28,2-2.08,3.11-2.08,1.04,0,2,.88,2,2.16,0,1.44-.56,2.79-2.24,6.23l-3.51,7.43c-1.12,2.32-2.08,3.51-3.67,3.51-2.15,0-2.39-1.76-5.43-1.76Z"/><path class="c4" d="M433.22,141.16h-23.08c-3.59,0-6.23.24-7.75.24-1.92,0-2.56-.88-2.56-2,0-3.19,5.11-1.36,5.11-6.87v-39.45c0-5.51-5.11-3.67-5.11-6.95,0-.96.8-1.92,2.56-1.92,1.92,0,3.99.24,7.75.24s6.15-.24,8.07-.24c1.76,0,2.39.96,2.39,1.92,0,3.27-5.11,1.44-5.11,6.95v39.61c0,2.32,1.04,3.27,3.43,3.27h7.91c6.15,0,10.3-4.15,16.13-10.3,1.28-1.28,2-2.08,3.11-2.08,1.04,0,2,.88,2,2.16,0,1.44-.56,2.79-2.24,6.23l-3.51,7.43c-1.12,2.32-2.08,3.51-3.67,3.51-2.16,0-2.4-1.76-5.43-1.76Z"/><path class="c4" d="M507.47,86.15c0,3.27-5.35,1.44-5.35,6.95v45.99c0,1.92-1.28,2.8-2.71,2.8-1.84,0-2.8-.96-3.91-2.32l-32.9-41.76v34.73c0,5.35,6.39,3.19,6.39,6.95,0,1.12-.88,1.92-2.63,1.92-2.08,0-4.71-.24-6.71-.24s-4.23.24-6.23.24c-1.68,0-2.48-.96-2.48-2,0-3.19,5.27-1.36,5.27-6.87v-39.45c0-5.51-5.27-3.67-5.27-6.87,0-1.12.88-2,2.71-2,1.52,0,3.11.16,5.03.16s2.95-.08,4.15-.08c1.36,0,2.56.4,3.83,2l29.15,37.13v-30.34c0-5.35-6.47-3.19-6.47-6.95,0-1.04,1.04-1.92,2.71-1.92,2.16,0,4.23.24,6.71.24,2.16,0,4.23-.24,6.15-.24,1.76,0,2.56.88,2.56,1.92Z"/><path class="c4" d="M564.56,126.07c0,1.44-.56,2.71-2.24,6.07l-3.43,7.35c-1.04,2.24-2.08,3.43-3.59,3.43-2.15,0-2.39-1.76-5.35-1.76h-26.43c-3.59,0-6.23.24-7.75.24-1.92,0-2.56-.88-2.56-2,0-3.19,5.11-1.36,5.11-6.87v-39.45c0-5.51-5.11-3.67-5.11-6.87,0-1.12.64-2,2.56-2,1.44,0,4.07.24,7.75.24h23.24c2.8,0,3.03-1.76,4.95-1.76,1.6,0,2.56,1.04,3.91,3.99l3.04,6.47c1.52,3.03,2.08,4.39,2.08,5.75s-.96,2.08-1.92,2.08c-1.12,0-1.84-.72-3.03-1.92-5.51-5.91-8.7-9.42-15.33-9.42h-5.91c-4.95,0-5.67,1.12-5.67,3.91v14.29c0,1.36.48,1.92,2.32,1.92h6.39c4.95,0,4.71-5.91,7.67-5.91,1.2,0,2.08.72,2.08,2.63s-.24,3.83-.24,5.83.24,4.07.24,5.91-.88,2.63-2.08,2.63c-2.95,0-2.72-5.91-7.67-5.91h-6.39c-1.84,0-2.32.56-2.32,1.92v15.17c0,2.87.8,3.91,5.67,3.91h8.94c6.87,0,10.46-3.83,16.13-9.98,1.12-1.28,1.84-2,2.95-2,.96,0,2,.8,2,2.08Z"/><path class="c4" d="M573.66,139.33l-3.27-7.03c-1.84-4.15-2.72-5.67-2.72-7.11,0-1.52,1.04-2.32,2-2.32,1.28,0,2.39,1.2,3.11,2,5.75,6.15,12.78,11.82,22.44,11.82,7.98,0,12.14-3.75,12.14-9.26,0-6.71-6.31-8.78-15.81-11.58-10.22-2.95-21.8-6.63-21.8-18.05,0-8.22,7.19-14.53,17.01-14.53,6.55,0,9.9,1.92,11.74,1.92s1.84-2.4,3.83-2.4c1.84,0,2.56,1.76,4.31,4.63l2.24,3.75c2.56,4.31,3.27,6.07,3.27,7.19,0,1.04-.8,1.84-1.68,1.84-1.2,0-2.08-.88-3.27-2.08-5.19-5.35-11.5-9.26-19-9.26-5.35,0-8.7,2.63-8.7,6.79,0,5.35,5.51,6.95,15.01,9.82,11.34,3.27,22.68,7.11,22.68,19.8,0,10.62-8.62,17.09-21.16,17.09-7.67,0-12.62-2.32-14.61-2.32-2.16,0-2.48,2.71-4.39,2.71-1.52,0-2.4-1.36-3.35-3.43Z"/><path class="c4" d="M627.39,139.33l-3.27-7.03c-1.84-4.15-2.72-5.67-2.72-7.11,0-1.52,1.04-2.32,2-2.32,1.28,0,2.39,1.2,3.11,2,5.75,6.15,12.78,11.82,22.44,11.82,7.98,0,12.14-3.75,12.14-9.26,0-6.71-6.31-8.78-15.81-11.58-10.22-2.95-21.8-6.63-21.8-18.05,0-8.22,7.19-14.53,17.01-14.53,6.55,0,9.9,1.92,11.74,1.92s1.84-2.4,3.83-2.4c1.84,0,2.56,1.76,4.31,4.63l2.24,3.75c2.56,4.31,3.27,6.07,3.27,7.19,0,1.04-.8,1.84-1.68,1.84-1.2,0-2.08-.88-3.27-2.08-5.19-5.35-11.5-9.26-19-9.26-5.35,0-8.7,2.63-8.7,6.79,0,5.35,5.51,6.95,15.01,9.82,11.34,3.27,22.68,7.11,22.68,19.8,0,10.62-8.62,17.09-21.16,17.09-7.67,0-12.62-2.32-14.61-2.32-2.16,0-2.48,2.71-4.39,2.71-1.52,0-2.4-1.36-3.35-3.43Z"/></svg>
+  </a>
+  <a href="#enroll" class="nav-cta">Enroll Now</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <span class="eyebrow">Introducing the Jumpstart Package</span>
+    <h1>You have done everything they asked. Now let's support what they won't.</h1>
+    <p class="hero-sub">The Jumpstart Package is the first time Biodynamic Wellness has made personalized, one-on-one functional nutrition support available for families in active cancer treatment at this investment. Lab-backed. Practitioner-led. Built around your child's biology. No discovery call required.</p>
+    <div class="cta-group">
+      <a href="#enroll" class="btn-primary">Enroll Now</a>
+      <a href="#how-it-works" class="btn-sec">See how it works</a>
+    </div>
+    <p class="hero-note">Available July 1 through August 31, 2026 &nbsp;&middot;&nbsp; Spots are limited by Savannah's weekly capacity</p>
+    <div class="hero-stats">
+      <div><span class="stat-n">0</span><span class="stat-l">Blood transfusions for a patient whose medical team was already preparing to transfuse</span></div>
+      <div><span class="stat-n">0&times;</span><span class="stat-l">Chemo held for a patient on active treatment since December. Not once.</span></div>
+      <div><span class="stat-n">30</span><span class="stat-l">Day personalized protocol built around your child's exact labs, history, and current treatment</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- QUALIFIER -->
+<section class="qualifier">
+  <div class="container">
+    <span class="eyebrow">This is for you if</span>
+    <h2>You are ready to stop surviving the protocol and start supporting the body in it.</h2>
+    <p class="qlead">You know there is more you could be doing. You just have not had someone to tell you what, exactly, for your child specifically. That is what we do here.</p>
+    <div class="qgrid">
+      <div class="qitem"><div class="qdot"></div><p>Your child is in active cancer treatment and you want to do more than watch and wait between appointments.</p></div>
+      <div class="qitem"><div class="qdot"></div><p>Your child is in remission and you are trying to build a body that cancer cannot come back in. That work does not stop at the clear scan.</p></div>
+      <div class="qitem"><div class="qdot"></div><p>You have wanted to work with Biodynamic Wellness but the Elite Care package was not where you could start right now. This is your answer.</p></div>
+      <div class="qitem"><div class="qdot"></div><p>You are an adult navigating cancer and you have been handed a diagnosis with no nutrition plan. You are ready for a real starting point.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section class="problem">
+  <div class="container">
+    <span class="eyebrow">The gap no one is filling</span>
+    <h2>They gave you a treatment plan. Nobody gave you a nutrition plan.</h2>
+    <hr class="div">
+    <p class="italic-pull">"What else can we do?"</p>
+    <p style="margin-top:28px">You have asked that question. I know you have. Because you are sitting in a hospital room watching your child receive chemotherapy that is doing what it needs to do and also doing something to their body that no one is addressing. You are watching their counts. You are tracking their symptoms. You are crying in the shower and smiling in the hallway. And you are wondering if there is something more you could be giving them.</p>
+    <p>There is. And it has a name. It has testing behind it. It has a protocol with your child's name on it.</p>
+    <p>The families who find us are the families who figured out that "what else can we do" has a real answer. Food matters. Functional labs tell you things conventional panels do not. The right supplement protocol during chemotherapy changes what the body is capable of. An informed parent who knows what to ask for at the bedside changes outcomes. We have watched it happen. The testimonials on this page are proof.</p>
+    <p>You are that parent. You already showed up. Now let us give you the tools.</p>
+  </div>
+</section>
+
+<!-- SOLUTION -->
+<section class="solution" id="how-it-works">
+  <div class="container">
+    <span class="eyebrow">The Jumpstart Package</span>
+    <h2>We meet you exactly where you are. Then we build the plan.</h2>
+    <p style="margin-top:22px;font-size:18px;line-height:1.8;color:var(--text-mid)">When you enroll in the Jumpstart Package, you work with a Biodynamic Wellness practitioner who holds advanced training in both functional nutrition and pediatric oncology care. Your starting point is built around your child's actual biology. Not a general protocol. Not a handout. Yours.</p>
+    <p style="margin-top:16px">You begin in one of two ways:</p>
+    <div class="pathways">
+      <div class="pathway">
+        <span class="pathway-badge">Option 1</span>
+        <h3>You already have labs</h3>
+        <p>Submit your existing labs with your intake forms before your first session. Your practitioner reviews them during your initial consultation and builds your protocol from what she sees. Blood chemistry and functional labs must be 3 months old or newer. 3x4 Genetics reports may be submitted regardless of age.</p>
+        <p class="pathway-note">Maximum review includes 1 functional lab plus blood chemistry.</p>
+      </div>
+      <div class="pathway">
+        <span class="pathway-badge">Option 2</span>
+        <h3>You do not have labs. Or you are not sure what to run.</h3>
+        <p>Your initial consultation focuses on your full intake. Your practitioner determines the right testing for your child's situation, orders it, and reviews the results at your included follow-up. That is where your 30-day protocol is finalized and handed to you.</p>
+        <p class="pathway-note">No guessing. We tell you exactly what to test and why.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INCLUDED -->
+<section class="included">
+  <div class="container">
+    <span class="eyebrow">What is included</span>
+    <h2>A complete starting point. Not a taste test.</h2>
+    <div class="inc-grid">
+      <div class="inc-card"><span class="inc-num">01</span><h3>Comprehensive Intake Review</h3><p>A detailed digital intake covering your child's full health history, current symptoms, food journal, lifestyle habits, and all current supplements. This is the foundation everything else is built on.</p><p class="inc-note">Submit any existing labs with your intake forms for pre-session review.</p></div>
+      <div class="inc-card"><span class="inc-num">02</span><h3>60 to 90 Minute Lab Review Consultation</h3><p>A one-on-one session with your Biodynamic Wellness practitioner to review your intake, existing labs, and determine the right next steps for your child. In person, video, or phone.</p><p class="inc-note">Must be booked within 30 days of purchase.</p></div>
+      <div class="inc-card"><span class="inc-num">03</span><h3>One Follow-Up Session</h3><p>A focused follow-up of up to 30 minutes to answer questions, refine your protocol, and make adjustments. If new labs were ordered, results are reviewed and your protocol is finalized here.</p><p class="inc-note">Often 10 to 15 minutes. Focused and actionable.</p></div>
+      <div class="inc-card"><span class="inc-num">04</span><h3>Personalized 30-Day Protocol</h3><p>A step-by-step plan built for your child specifically. Targeted nutrition recommendations, supplement guidance, and lifestyle support based on their labs, history, and current treatment protocol.</p><p class="inc-note">This is not a generic handout. It has your child's name on it.</p></div>
+    </div>
+    <div class="bonus-bar">
+      <span class="bonus-badge">July and August Only</span>
+      <div class="bonus-text">
+        <strong>Free 30-Day Direct Messaging Access to Your Practitioner</strong>
+        <p>Every family who enrolls in July or August receives free direct messaging with Savannah, Monday through Friday, 9am to 5pm PST. Ask questions between sessions, share updates, and get real guidance in real time. This is not a standard feature of this package. It closes with August enrollments.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRACTITIONER -->
+<section class="practitioner">
+  <div class="container">
+    <span class="eyebrow">Your Jumpstart Practitioner</span>
+    <h2>You are not working with a generalist. You are working with someone who has been in that room.</h2>
+    <div class="pcard">
+      <div><div class="pphoto">Savannah's photo goes here</div></div>
+      <div>
+        <p class="pname">Savannah Cruz</p>
+        <p class="pcreds">FNTP &nbsp;&middot;&nbsp; Pediatric Oncology RN</p>
+        <div class="ctags">
+          <span class="ctag">Functional Nutritional Therapy Practitioner</span>
+          <span class="ctag">Pediatric Oncology Registered Nurse</span>
+          <span class="ctag">Biodynamic Wellness Practitioner</span>
+        </div>
+        <p>Savannah Cruz has spent years at the bedside of children with cancer. She has been in those hospital rooms. She has walked with families through port accesses and lab draws and the particular kind of fear that comes at 2am when the fever spikes. She knows what conventional oncology offers and she knows where it goes silent.</p>
+        <p style="margin-top:16px">She started asking the question every good practitioner eventually asks: what else can we do? What happens when we support the body instead of only fighting the disease? When she found the answers, she found us.</p>
+        <p style="margin-top:16px">She is not just trained in the clinical side of pediatric oncology. She has lived it from the inside of hospital walls. She knows what these families need because she has sat with them in the thick of it. That changes how she practices. And it will change how she practices with you.</p>
+        <div class="endorse">
+          <p>"I did not take this lightly. I am protective of this community the way a mother is protective of her children. I would not bring someone into this space unless I was completely confident they are the real thing. Savannah is the real thing."</p>
+          <p class="sig">Season Johnson, Founder &nbsp;&middot;&nbsp; Biodynamic Wellness</p>
+        </div>
+        <p style="margin-top:22px;font-size:13px;color:var(--text-muted);font-style:italic">[Savannah's personal bio and intro video go here after your working session with her]</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="container">
+    <span class="eyebrow">Real families. Real results.</span>
+    <h2>What supporting the body actually looks like.</h2>
+    <p class="tlead">These are not carefully curated marketing moments. They are follow-up calls. Office hours check-ins. A mom's voice on a Tuesday afternoon reporting back what happened.</p>
+    <div class="tstack">
+      <div class="tcard">
+        <p class="tquote">"Her platelets dropped to 27. They were already talking about a transfusion. I said give her two days. She went up on her own. She had zero blood transfusions throughout her entire protocol."</p>
+        <p class="tsource">Mom of a pediatric cancer patient, active treatment</p>
+        <div class="tcallout">When we run functional labs, we can see what the body needs before it hits a crisis point and support it getting there on its own. That is the difference between waiting and acting.</div>
+      </div>
+      <div class="tcard">
+        <p class="tquote">"Since she started in December, her chemo has not been held once."</p>
+        <p class="tsource">Mom of a pediatric patient, active chemotherapy</p>
+        <div class="tcallout">Chemo being held means the body is not recovering fast enough between cycles. Not once held means her body kept showing up. Every single time. That is what terrain support does.</div>
+      </div>
+      <div class="tcard">
+        <p class="tquote">"Every single time before, we were admitted for a week or two. This time she went in with a fever. Her ANC was 1,500. Everything came back negative. For the first time ever, we went home."</p>
+        <p class="tsource">Summer's mom, pediatric cancer</p>
+        <div class="tcallout">ANC reflects immune terrain. Supporting it with targeted nutrition and functional protocols changes what the body is capable of. Summer's mom knew what to look for because she had the right information.</div>
+      </div>
+      <div class="tcard">
+        <p class="tquote">"He still has mycotoxins and plastics present. But it looks so much better than it had before."</p>
+        <p class="tsource">Season, reviewing Konnor's functional labs. His dad is on every call, implementing every phase.</p>
+        <div class="tcallout">Detox markers do not improve by accident. They improve because someone is looking for them and building a protocol around what they find. Konnor's dad showed up for every single session. That is why the numbers moved.</div>
+      </div>
+      <div class="tcard">
+        <p class="tquote">"Post-treatment GI maps are typically a mess. Dominick's? I was genuinely happy with what I saw. The way his family ate, the protocol they followed, this could have looked a million times worse. It did not."</p>
+        <p class="tsource">Season, reviewing Dominick's GI-MAP after cancer treatment</p>
+        <div class="tcallout">A GI-MAP after chemo and radiation tells us everything about how well the body was supported during treatment. Dominick's family did the work. The labs proved it.</div>
+      </div>
+      <div class="tcard">
+        <p class="tquote">"He's still gaining weight. He looks great. He has great energy. He's doing really good."</p>
+        <p class="tsource">Micah's mom, remission follow-up call. Unprompted.</p>
+      </div>
+      <div class="tcard">
+        <p class="tquote">"She's doing good. Thriving through cancer. Yeah."</p>
+        <p class="tsource">A mom, group office hours call</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="enroll">
+  <div class="container">
+    <span class="eyebrow">Investment</span>
+    <h2>This level of support has never been more accessible.</h2>
+    <p style="margin-top:16px;font-size:17px">No discovery call. No waiting. Enroll today and book directly with Savannah. If you are ready to start, she is ready to meet you.</p>
+    <div class="pgrid">
+      <div class="pcard-box">
+        <span class="plabel">Payment Plan</span>
+        <p class="pamount">$1,598</p>
+        <p class="pdesc">Two payments of $799</p>
+        <p style="font-size:15px;color:var(--text-mid);line-height:1.75">If the pay-in-full investment is not where you can start right now, the payment plan exists for exactly that reason. Two payments. No judgment. Same full experience.</p>
+        <a href="[PRACTICE BETTER CHECKOUT LINK]" class="pcta">Enroll on Payment Plan</a>
+      </div>
+      <div class="pcard-box feat">
+        <span class="plabel">Pay in Full</span>
+        <p class="pamount">$1,497</p>
+        <p class="pdesc">Save $101 when you pay in full</p>
+        <div class="code-box">
+          <span class="code-lbl">Enter this code at checkout</span>
+          <span class="code-val">JUMP</span>
+          <span class="code-sub">The discounted rate requires this code. Enter it before you complete your purchase.</span>
+        </div>
+        <a href="[PRACTICE BETTER CHECKOUT LINK]" class="pcta">Enroll and Pay in Full</a>
+      </div>
+    </div>
+    <div class="pterms">
+      <h4>Important to know before you enroll</h4>
+      <ul>
+        <li>All services must be used within 90 days of purchase</li>
+        <li>All consults must be completed within 60 days of your initial consultation</li>
+        <li>Your Lab Review Consultation must be booked within 30 days of purchase</li>
+        <li>The free 30-day messaging bonus is available for July and August enrollments only</li>
+        <li>Spots are limited by Savannah's weekly client capacity</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- SEASON NOTE -->
+<section class="season-note">
+  <div class="container">
+    <span class="eyebrow">A note from Season</span>
+    <h2>Why I built this. And why I trust Savannah with you.</h2>
+    <div style="margin-top:44px">
+      <p class="note-pull">"I would not bring someone into this space unless I was completely confident they are the real thing."</p>
+      <p>For years one of the hardest things I have carried is knowing that the level of support we offer at Biodynamic Wellness has not always been financially accessible for every family walking through a cancer journey. The Elite Care package is extraordinary. I believe in it completely. But I also know that when you are managing treatment costs and time off work and travel and the weight of everything else a cancer diagnosis asks of a family, an $8,999 investment is not always where you can start.</p>
+      <p>So families waited. Or they tried to piece things together on their own. Or they came to office hours and grabbed whatever free information they could and hoped it was enough. And my heart broke every time. Because I knew what was possible if they could just get the right support.</p>
+      <p>Savannah changed that.</p>
+      <p>When she joined our team I knew we had an opportunity to build something that closed this gap. She is a Pediatric Oncology RN who has stood at the bedside of children with cancer. She is also a Functional Nutritional Therapy Practitioner who understands how to support the body with food and testing and targeted protocols. She is the bridge between the conventional world and the functional world in a way that is rare. And she is here right now, ready to meet your family.</p>
+      <p>The Jumpstart Package is the starting point I have always wished I could offer every family from day one. It is not a watered-down version of what we do. It is a strategic, personalized, practitioner-led beginning. And I am so proud to finally be able to offer it.</p>
+      <p>If you have been on the sidelines wondering whether there is a place for your family here, there is. This is it. He sees you. I see you. We are here.</p>
+      <p class="note-sig">With love,<br>Season</p>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq">
+  <div class="container">
+    <span class="eyebrow">Questions</span>
+    <h2>What families ask before they enroll.</h2>
+    <div class="faq-list">
+      <div class="faq-item"><p class="faq-q">Do I need to have labs before I enroll?</p><p class="faq-a">No. If you have labs that are 3 months old or newer, submit them with your intake forms and Savannah will review them during your first session. If you do not have labs, or you are not sure which ones to run, your first session focuses on your intake and determining the right testing. Results come back, Savannah reviews them, and your protocol is finalized at your follow-up. Both paths work. Neither is the wrong one.</p></div>
+      <div class="faq-item"><p class="faq-q">Is this right for active treatment or remission?</p><p class="faq-a">Both. We designed the Jumpstart specifically for families in active treatment alongside chemotherapy, radiation, or surgery. It is also exactly right for families in remission who are focused on building a body cancer cannot come back in. Adults navigating cancer are welcome too. The work does not stop at the clear scan.</p></div>
+      <div class="faq-item"><p class="faq-q">Do I need to do a discovery call first?</p><p class="faq-a">No. This is the first time we have made this level of support available without a discovery call. You can enroll directly and book with Savannah right away. If you have questions before enrolling, reply to any of our emails and our team will get back to you.</p></div>
+      <div class="faq-item"><p class="faq-q">What is the difference between the Jumpstart and the Elite Care package?</p><p class="faq-a">The Elite Care package is our most comprehensive offering. An extended, high-touch partnership with multiple sessions, ongoing direct messaging, advanced testing, and full practitioner access across nine months. The Jumpstart is a focused, strategic starting point: two sessions, a comprehensive intake, and a personalized 30-day protocol. For many families it is the beginning of a longer journey with us. For others it is exactly what they needed.</p></div>
+      <div class="faq-item"><p class="faq-q">How does the 30-day messaging bonus work?</p><p class="faq-a">Every family who enrolls in July or August receives free direct messaging access to Savannah, Monday through Friday, 9am to 5pm PST, for 30 days from their enrollment date. You can ask questions, share updates, and get real guidance between sessions. This bonus closes with August enrollments.</p></div>
+      <div class="faq-item"><p class="faq-q">What comes after the Jumpstart?</p><p class="faq-a">You will have the option to continue into our Continued Care Package at $2,099 pay in full or our comprehensive Sustain Wellness Package at $8,599 pay in full. Savannah will reach out personally after your sessions to talk through what she recommends based on where you are. You built something in the Jumpstart. The worst thing that could happen is stopping.</p></div>
+      <div class="faq-item"><p class="faq-q">Is the pay-in-full discount automatic?</p><p class="faq-a">No. You must enter the code JUMP at checkout to receive the pay-in-full rate of $1,497. Without the code the standard rate applies. Enter it before you complete your purchase.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <div class="container">
+    <span class="eyebrow">You are ready</span>
+    <h2>Your child deserves a plan. Not more waiting.</h2>
+    <p class="fsub">Enroll in the Jumpstart Package and book directly with Savannah. No discovery call. No delay. Just a real starting point, built for your family, by someone who has been in that hospital room and knows exactly what it costs to show up every single day.</p>
+    <div class="cta-group">
+      <a href="[PRACTICE BETTER CHECKOUT LINK]" class="btn-primary">Enroll Now</a>
+    </div>
+    <p class="fnote">Pay in full $1,497 with code JUMP &nbsp;&middot;&nbsp; Payment plan $1,598 &nbsp;&middot;&nbsp; July 1 through August 31, 2026</p>
+  </div>
+</section>
+
+<footer>
+  <p>&copy; 2026 Biodynamic Wellness &nbsp;&middot;&nbsp; Est. 2002 &nbsp;&middot;&nbsp; All services must be used within 90 days of purchase.<br>Questions? <a href="mailto:[CONTACT EMAIL]">Contact our team</a></p>
+</footer>
+
+</body>
+</html>
